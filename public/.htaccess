@@ -1,0 +1,12 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Chuyển hướng tất cả các request bắt đầu bằng /api/ vào file api.php
+  RewriteRule ^api/(.*)$ api.php [QSA,L]
+
+  # Các request không phải là file hoặc thư mục thực tế sẽ được chuyển về index.html (cho React Router)
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ index.html [L]
+</IfModule>
